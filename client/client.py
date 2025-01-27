@@ -20,6 +20,13 @@ def main(server_ip: str, server_port: int) -> None:
     """
     # TODO: Replace with prompt to user and call to get_img_prediction
     print(f"Using server {server_ip}:{server_port}")
+    print(f"What is the path to the image?")
+
+    get_img_prediction(
+        server_ip,
+        server_port,
+        "/predict",
+    )
 
 
 if __name__ == "__main__":
