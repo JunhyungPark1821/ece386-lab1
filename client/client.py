@@ -1,8 +1,13 @@
 """
-TODO: Insert what this program does here.
+client.py
+Prompts the user for a path to an image, IP address and port number of the server, and path for API
+Makes an HTTP POST rquest to the server
+Waits for the response
+Displays the integer
 """
 
 import sys
+import requests
 
 
 def get_img_prediction(
@@ -10,7 +15,15 @@ def get_img_prediction(
 ) -> str:
     """Send image to server for prediction."""
     # TODO: Replace with code to send image to server
-    return ""
+    image = open(image_path, "rb")
+    r = requests.post(
+        f"http://{server_ip}:{server_port}{api_path}",
+        files={"file": image},
+    )
+
+    print(f"The predicted number is: {r.text}")
+
+    return str(r)
 
 
 def main(server_ip: str, server_port: int) -> None:
@@ -20,13 +33,9 @@ def main(server_ip: str, server_port: int) -> None:
     """
     # TODO: Replace with prompt to user and call to get_img_prediction
     print(f"Using server {server_ip}:{server_port}")
-    print(f"What is the path to the image?")
+    path = input(f"What is the path to the image? ")
 
-    get_img_prediction(
-        server_ip,
-        server_port,
-        "/predict",
-    )
+    get_img_prediction(server_ip, server_port, "/predict/", path)
 
 
 if __name__ == "__main__":
