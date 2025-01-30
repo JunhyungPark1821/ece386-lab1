@@ -1,6 +1,7 @@
 """
 TODO: Insert what this program does here. Should start with
-digits is a FastAPI app that 
+
+digits.py is a FastAPI app that 
 - opens the previously saved Keras model 
 - accepts POST request to /predict
 - reshapes and grayscales the image to work with the model's input expectations
@@ -33,7 +34,7 @@ def image_to_np(image_bytes: bytes) -> np.ndarray:
     # TODO: convert image to grayscale and resize
     img = ImageOps.grayscale(img)
     size = (28, 28)
-    img = img.thumbnail(size, Image.Resampling.LANCZOS)
+    img = ImageOps.contain(img, size)
     # TODO: convert image to numpy array of shape model expects
     numpy_img = np.asarray(img)
     numpy_img = np.reshape(numpy_img, (1, 28, 28))
@@ -41,7 +42,7 @@ def image_to_np(image_bytes: bytes) -> np.ndarray:
 
 
 # TODO: Define predict POST function
-@app.post("/predict/")
+@app.post("/predict")
 def predict(file: Annotated[bytes, File()]) -> int:
     "Predict the number"
     img = image_to_np(file)

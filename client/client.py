@@ -3,7 +3,7 @@ client.py
 Prompts the user for a path to an image, IP address and port number of the server, and path for API
 Makes an HTTP POST rquest to the server
 Waits for the response
-Displays the integer
+Displays the predicted integer
 """
 
 import sys
@@ -35,7 +35,7 @@ def main(server_ip: str, server_port: int) -> None:
     print(f"Using server {server_ip}:{server_port}")
     path = input(f"What is the path to the image? ")
 
-    get_img_prediction(server_ip, server_port, "/predict/", path)
+    get_img_prediction(server_ip, server_port, "/predict", path)
 
 
 if __name__ == "__main__":
