@@ -20,5 +20,5 @@ See [USAFA ECE 386: AI Hardware Applications - Lab 1](https://usafa-ece.github.i
 ### Does the client/server architecture make sense for this problem? Why or why not?
 
 ## Documentation
-
+- Used FastAPI, requests, and python documentation.
 *Documentation statement. Pay special attention to the LLM policy.*
